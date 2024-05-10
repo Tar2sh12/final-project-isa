@@ -66,7 +66,7 @@ const error = () => {
   return (
     <div>
       <PatientHeader/>
-          <div className="container h-100">
+        <div className="container h-100">
         <div className="row h-100 justify-content-center align-items-center">
           <div className="col-xl-12">
             <div className="card mb-4">

@@ -1,4 +1,8 @@
-section.card {
+   .new{
+    align-items: center;
+    justify-content: center;
+   }
+   .cardd {
     position: relative;
     width: 350px;
     height: 200px;
@@ -11,12 +15,12 @@ section.card {
     perspective: 1000px;
     transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-  .card svg {
+  .cardd svg {
     fill: #333;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 3px;
   }
-  .card:hover {
+  .cardd:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px #000000;
     background-color: #474dc3;
@@ -37,7 +41,7 @@ section.card {
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   
-  .card:hover .card__content {
+  .cardd:hover .card__content {
     transform: rotateX(0deg);
   }
   
@@ -49,7 +53,7 @@ section.card {
     font-weight: 700;
   }
   
-  .card:hover svg {
+  .cardd:hover svg {
     scale: 0;
   }
   
@@ -58,4 +62,68 @@ section.card {
     font-size: 14px;
     color: #ffffff;
     line-height: 1.4;
+  }
+
+  .book {
+    position: relative;
+    border-radius: 10px;
+    width: 220px;
+    height: 300px;
+    background-color: whitesmoke;
+    -webkit-box-shadow: 1px 1px 12px #000;
+    box-shadow: 1px 1px 12px #000;
+    -webkit-transform: preserve-3d;
+    -ms-transform: preserve-3d;
+    transform: preserve-3d;
+    -webkit-perspective: 2000px;
+    perspective: 2000px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #000;
+  }
+  
+  .cover {
+    top: 0;
+    position: absolute;
+    background-color: lightgray;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    -webkit-transform-origin: 0;
+    -ms-transform-origin: 0;
+    transform-origin: 0;
+    -webkit-box-shadow: 1px 1px 12px #000;
+    box-shadow: 1px 1px 12px #000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  
+  .book:hover .cover {
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    -webkit-transform: rotatey(-80deg);
+    -ms-transform: rotatey(-80deg);
+    transform: rotatey(-80deg);
+  }
+  
+  p {
+    font-size: 20px;
+    font-weight: bolder;
   }
