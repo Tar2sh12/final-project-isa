@@ -156,6 +156,7 @@ const AddVaccine = () => {
                       Vaccination Centers
                     </label>
                     <select className="form-control" value={selectedOption} onChange={handleDropdownChange} type="text" id="role">
+                      <option value={""}> </option>
                         {
                             users.result.map((user) => {
                                 return(<option value={parseInt(user.id)}>{user.name} </option>)
