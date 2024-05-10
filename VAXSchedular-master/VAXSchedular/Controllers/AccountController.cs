@@ -32,7 +32,7 @@ namespace VAXSchedular.Controllers
 
 				if (token == null)
 				{
-					return Unauthorized("incorrect Email and Password");
+					return Unauthorized("incorrect Email and Password or You Not Approved yet");
 				}
 
 				return Ok(token);

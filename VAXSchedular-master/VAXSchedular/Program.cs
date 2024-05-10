@@ -9,6 +9,8 @@ using VAXSchedular.core.Repository.Contract;
 using VAXSchedular.Helpers;
 using VAXSchedular.InfraStructure;
 using VAXSchedular.InfraStructure.Data;
+using VAXSchedular.SignalR;
+
 
 namespace VAXSchedular
 {
@@ -91,6 +93,8 @@ namespace VAXSchedular
 								});
 			});
 
+			builder.Services.AddSignalR();
+
 			#endregion
 
 			var app = builder.Build();
@@ -123,11 +127,13 @@ namespace VAXSchedular
 			}
 
 			app.UseHttpsRedirection();
+			app.MapHub<NotificationHub>("/RealTime");
 			app.UseCors(MyAllowSpecificOrigins);
 			app.UseAuthorization();
 
 
-			app.MapControllers(); 
+			app.MapControllers();
+			
 			#endregion
 
 			app.Run();

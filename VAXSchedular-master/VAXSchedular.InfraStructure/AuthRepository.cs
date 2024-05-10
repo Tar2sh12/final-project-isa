@@ -40,6 +40,11 @@ namespace VAXSchedular.InfraStructure
 				return null;
 			}
 
+			if(user.Status==false)
+			{
+				return null;
+			}
+
 
 			if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
 			{
@@ -51,6 +56,7 @@ namespace VAXSchedular.InfraStructure
 			 new Claim(ClaimTypes.Email, user.Email),
 			 new Claim(ClaimTypes.Name, user.Name),
 			  new Claim(ClaimTypes.Role, user.Role.Name),
+			  
 			 };
 
 			var key = new SymmetricSecurityKey(Encoding.UTF8

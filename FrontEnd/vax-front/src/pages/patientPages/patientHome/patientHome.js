@@ -1,12 +1,20 @@
 import '../patientHome/patientHome.css'
-import { FiTrash } from "react-icons/fi";
-import { BsPencil, BsDisplay } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import React,{useRef,useEffect,createContext,useState} from "react";
 import axios, { formToJSON } from 'axios';
 import {  getAuthToken, setAuthToken } from "../../../services/auth";
 import { useNavigate } from "react-router-dom";
 import PatientHeader from '../../../components/patientHeader'
+import * as signalR from "@microsoft/signalr";
+import {jwtDecode} from "jwt-decode";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const createSignalRConnection = () => {
+  return  new signalR.HubConnectionBuilder()
+      .withUrl("http://localhost:5003/RealTime")
+      .withAutomaticReconnect()
+      .build();
+};
+
 const PatientHome = () => {
     const [data,setData]=useState([]);
     const navigate=useNavigate();
@@ -18,9 +26,25 @@ const PatientHome = () => {
      update: false,
    });
 //    function handeChange()
-   const [search, setSearch] = useState("");
-   
+    const [search, setSearch] = useState("");
+    let connection;
+    connection = createSignalRConnection();
+
+     
+     
    useEffect(() => {
+    const user= jwtDecode(localStorage.getItem("token"));
+    const id=user.nameid
+    console.log(id);
+    if (connection) {
+      connection.start()
+          .then(result => {
+            connection.on(id,(msg)=>{
+              console.log(msg);
+              toast.info(msg);
+            })
+          })
+        }
      axios
        .get("http://localhost:5003/api/Patient/GetAllVaccinationCentersWithVaccines", {
                headers: {
@@ -79,7 +103,8 @@ const [vaccine,setVaccine]=useState("");
     <>
     <PatientHeader/>
     {users.err !== null && error()}
-    <div>
+    <ToastContainer position="top-right" autoClose={5000} hideProgressBar newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <div>
     <h1 className="heading">Welcome {getAuthToken().user.role} {getAuthToken().user.unique_name}</h1>
   </div>{
     users.result.map((user,index) => {
