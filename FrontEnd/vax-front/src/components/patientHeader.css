@@ -1,0 +1,7 @@
+.navbar-nav .nav-item .nav-link:hover {
+  color: #3c93be;
+}
+.navbar-nav .nav-item .btn.btn-outline-light:hover {
+  background-color: aquamarine;
+  color: aquamarine;
+}
